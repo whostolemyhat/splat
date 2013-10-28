@@ -140,6 +140,7 @@
 		1A6BA9D6181C712900B5EC29 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9D5181C712900B5EC29 /* GameplayLayer.m */; };
 		1A6BA9D8181C76ED00B5EC29 /* enemyShip.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BA9D7181C76ED00B5EC29 /* enemyShip.png */; };
 		1A6F72E3181D409400D2B40D /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F72E2181D409400D2B40D /* Monster.m */; };
+		1A6F72E6181F18BF00D2B40D /* CCShake.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F72E5181F18BE00D2B40D /* CCShake.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -416,6 +417,8 @@
 		1A6BA9D7181C76ED00B5EC29 /* enemyShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip.png; sourceTree = "<group>"; };
 		1A6F72E1181D409400D2B40D /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
 		1A6F72E2181D409400D2B40D /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
+		1A6F72E4181F18BE00D2B40D /* CCShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCShake.h; sourceTree = "<group>"; };
+		1A6F72E5181F18BE00D2B40D /* CCShake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCShake.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,6 +444,8 @@
 		1A6BA8241813E0CC00B5EC29 = {
 			isa = PBXGroup;
 			children = (
+				1A6F72E4181F18BE00D2B40D /* CCShake.h */,
+				1A6F72E5181F18BE00D2B40D /* CCShake.m */,
 				1A6BA8421813E0CC00B5EC29 /* Splat */,
 				1A6BA82F1813E0CC00B5EC29 /* Frameworks */,
 				1A6BA82E1813E0CC00B5EC29 /* Products */,
@@ -1045,6 +1050,7 @@
 				1A6BA9D1181709CC00B5EC29 /* GameScene.m in Sources */,
 				1A6BA9D6181C712900B5EC29 /* GameplayLayer.m in Sources */,
 				1A6F72E3181D409400D2B40D /* Monster.m in Sources */,
+				1A6F72E6181F18BF00D2B40D /* CCShake.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

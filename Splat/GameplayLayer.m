@@ -8,6 +8,7 @@
 
 #import "GameplayLayer.h"
 #import "Monster.h"
+#import "CCShake.h"
 
 @implementation GameplayLayer
 
@@ -26,7 +27,6 @@ NSMutableArray *_monsters;
 
 -(void) addMonster {
     Monster *monster = [Monster spriteWithFile:@"enemyShip.png"];
-    monster.tag = 1;
     
     CGSize winSize = [CCDirector sharedDirector].winSize;
     
@@ -93,6 +93,8 @@ NSMutableArray *_monsters;
     for(CCSprite *monster in monstersToDelete) {
         [_monsters removeObject:monster];
         [self removeChild:monster cleanup:YES];
+        CCShaky3D *shake = [CCShaky3D actionWithRange:5 shakeZ:NO grid:ccg(1,1) duration:0.5];
+        [self.parent runAction:shake];
     }
     [monstersToDelete release];
 }

@@ -14,6 +14,7 @@
     self = [super init];
 
     if(self != nil) {
+        
         BackgroundLayer *background = [BackgroundLayer node];
         [self addChild:background z: 0];
         GameplayLayer *gameplayLayer = [GameplayLayer node];
