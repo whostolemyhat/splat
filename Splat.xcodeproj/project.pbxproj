@@ -135,7 +135,11 @@
 		1A6BA9C21813E0CF00B5EC29 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9C11813E0CF00B5EC29 /* IntroLayer.m */; };
 		1A6BA9CA1813E12C00B5EC29 /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9C91813E12C00B5EC29 /* BackgroundLayer.m */; };
 		1A6BA9CC1813E35400B5EC29 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BA9CB1813E35400B5EC29 /* background.png */; };
-		1A6BA9CE1817096E00B5EC29 /* bat.32x32.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BA9CD1817096E00B5EC29 /* bat.32x32.gif */; };
+		1A6BA9D1181709CC00B5EC29 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9D0181709CC00B5EC29 /* GameScene.m */; };
+		1A6BA9D318170B7F00B5EC29 /* backgroundPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BA9D218170B7F00B5EC29 /* backgroundPhone.png */; };
+		1A6BA9D6181C712900B5EC29 /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9D5181C712900B5EC29 /* GameplayLayer.m */; };
+		1A6BA9D8181C76ED00B5EC29 /* enemyShip.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BA9D7181C76ED00B5EC29 /* enemyShip.png */; };
+		1A6F72E3181D409400D2B40D /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F72E2181D409400D2B40D /* Monster.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -404,7 +408,14 @@
 		1A6BA9C81813E12C00B5EC29 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		1A6BA9C91813E12C00B5EC29 /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 		1A6BA9CB1813E35400B5EC29 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		1A6BA9CD1817096E00B5EC29 /* bat.32x32.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bat.32x32.gif; sourceTree = "<group>"; };
+		1A6BA9CF181709CC00B5EC29 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		1A6BA9D0181709CC00B5EC29 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		1A6BA9D218170B7F00B5EC29 /* backgroundPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundPhone.png; sourceTree = "<group>"; };
+		1A6BA9D4181C712800B5EC29 /* GameplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayLayer.h; sourceTree = "<group>"; };
+		1A6BA9D5181C712900B5EC29 /* GameplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayLayer.m; sourceTree = "<group>"; };
+		1A6BA9D7181C76ED00B5EC29 /* enemyShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip.png; sourceTree = "<group>"; };
+		1A6F72E1181D409400D2B40D /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
+		1A6F72E2181D409400D2B40D /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,8 +478,14 @@
 				1A6BA9BB1813E0CF00B5EC29 /* AppDelegate.m */,
 				1A6BA9C81813E12C00B5EC29 /* BackgroundLayer.h */,
 				1A6BA9C91813E12C00B5EC29 /* BackgroundLayer.m */,
+				1A6BA9CF181709CC00B5EC29 /* GameScene.h */,
+				1A6BA9D0181709CC00B5EC29 /* GameScene.m */,
+				1A6BA9D4181C712800B5EC29 /* GameplayLayer.h */,
+				1A6BA9D5181C712900B5EC29 /* GameplayLayer.m */,
 				1A6BA9BD1813E0CF00B5EC29 /* HelloWorldLayer.h */,
 				1A6BA9BE1813E0CF00B5EC29 /* HelloWorldLayer.m */,
+				1A6F72E1181D409400D2B40D /* Monster.h */,
+				1A6F72E2181D409400D2B40D /* Monster.m */,
 				1A6BA9C01813E0CF00B5EC29 /* IntroLayer.h */,
 				1A6BA9C11813E0CF00B5EC29 /* IntroLayer.m */,
 				1A6BA8431813E0CC00B5EC29 /* Resources */,
@@ -481,7 +498,8 @@
 		1A6BA8431813E0CC00B5EC29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1A6BA9CD1817096E00B5EC29 /* bat.32x32.gif */,
+				1A6BA9D7181C76ED00B5EC29 /* enemyShip.png */,
+				1A6BA9D218170B7F00B5EC29 /* backgroundPhone.png */,
 				1A6BA9CB1813E35400B5EC29 /* background.png */,
 				1A6BA8441813E0CC00B5EC29 /* Default.png */,
 				1A6BA8461813E0CC00B5EC29 /* Default-Landscape~ipad.png */,
@@ -907,7 +925,8 @@
 				1A6BA85C1813E0CC00B5EC29 /* iTunesArtwork in Resources */,
 				1A6BA99A1813E0CE00B5EC29 /* ChangeLog in Resources */,
 				1A6BA9CC1813E35400B5EC29 /* background.png in Resources */,
-				1A6BA9CE1817096E00B5EC29 /* bat.32x32.gif in Resources */,
+				1A6BA9D318170B7F00B5EC29 /* backgroundPhone.png in Resources */,
+				1A6BA9D8181C76ED00B5EC29 /* enemyShip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1023,6 +1042,9 @@
 				1A6BA9BF1813E0CF00B5EC29 /* HelloWorldLayer.m in Sources */,
 				1A6BA9C21813E0CF00B5EC29 /* IntroLayer.m in Sources */,
 				1A6BA9CA1813E12C00B5EC29 /* BackgroundLayer.m in Sources */,
+				1A6BA9D1181709CC00B5EC29 /* GameScene.m in Sources */,
+				1A6BA9D6181C712900B5EC29 /* GameplayLayer.m in Sources */,
+				1A6F72E3181D409400D2B40D /* Monster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1126,6 +1148,7 @@
 				1A6BA9C71813E0CF00B5EC29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
