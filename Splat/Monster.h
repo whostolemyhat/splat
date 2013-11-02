@@ -25,3 +25,7 @@
 @interface SlowMonster : Monster
 
 @end
+
+@interface Asteroid : Monster
+
+@end

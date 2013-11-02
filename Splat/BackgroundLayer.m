@@ -13,15 +13,14 @@
 -(id) init {
     self = [super init];
     if(self != nil) {
-        CCSprite *backgroundImage;
-        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            backgroundImage = [CCSprite spriteWithFile:@"background.png"];
-        } else {
-            backgroundImage = [CCSprite spriteWithFile:@"backgroundPhone.png"];
-        }
         
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
-        [backgroundImage setPosition:CGPointMake(screenSize.width / 2, screenSize.height / 2)];
+        // Bug: first launch only covers half the screen, so stretch width
+        CCSprite *backgroundImage = [CCSprite spriteWithFile:@"starBackground.png"
+                              rect:CGRectMake(0, 0, screenSize.width * 2, screenSize.height)];
+        ccTexParams params = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
+        [backgroundImage.texture setTexParameters:&params];
+        backgroundImage.position = ccp(screenSize.width / 2, screenSize.height / 2);
         
         [self addChild:backgroundImage z:0 tag:0];
     }

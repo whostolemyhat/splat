@@ -144,6 +144,8 @@
 		1A6F72ED1825545500D2B40D /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F72EC1825545500D2B40D /* GameOverLayer.m */; };
 		1A6F72EF1825612900D2B40D /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F72EE1825612900D2B40D /* fire.png */; };
 		1A6F72F118256B9600D2B40D /* enemyUFO.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F72F018256B9600D2B40D /* enemyUFO.png */; };
+		1A6F72F318258CBF00D2B40D /* starBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F72F218258CBE00D2B40D /* starBig.png */; };
+		1A6F72F718258F9500D2B40D /* starBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F72F618258F9500D2B40D /* starBackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -424,6 +426,8 @@
 		1A6F72EC1825545500D2B40D /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		1A6F72EE1825612900D2B40D /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
 		1A6F72F018256B9600D2B40D /* enemyUFO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyUFO.png; sourceTree = "<group>"; };
+		1A6F72F218258CBE00D2B40D /* starBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starBig.png; sourceTree = "<group>"; };
+		1A6F72F618258F9500D2B40D /* starBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starBackground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,6 +510,8 @@
 		1A6BA8431813E0CC00B5EC29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1A6F72F618258F9500D2B40D /* starBackground.png */,
+				1A6F72F218258CBE00D2B40D /* starBig.png */,
 				1A6F72F018256B9600D2B40D /* enemyUFO.png */,
 				1A6F72EE1825612900D2B40D /* fire.png */,
 				1A6F72E918250BA900D2B40D /* meteorSmall.png */,
@@ -943,6 +949,8 @@
 				1A6F72EA18250BA900D2B40D /* meteorSmall.png in Resources */,
 				1A6F72EF1825612900D2B40D /* fire.png in Resources */,
 				1A6F72F118256B9600D2B40D /* enemyUFO.png in Resources */,
+				1A6F72F318258CBF00D2B40D /* starBig.png in Resources */,
+				1A6F72F718258F9500D2B40D /* starBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

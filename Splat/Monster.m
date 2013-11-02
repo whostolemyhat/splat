@@ -35,7 +35,16 @@
 @implementation FastMonster
 
 -(id) init {
-    self = [super initWithFile:@"enemyUFO" hp:1 minMoveDuration:3 maxMoveDuration:5];
+    self = [super initWithFile:@"enemyUFO.png" hp:1 minMoveDuration:3 maxMoveDuration:5];
+    return self;
+}
+
+@end
+
+@implementation Asteroid
+
+-(id) init {
+    self = [super initWithFile:@"meteorSmall.png" hp:1 minMoveDuration:5 maxMoveDuration:8];
     return self;
 }
 

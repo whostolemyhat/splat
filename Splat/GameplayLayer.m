@@ -15,13 +15,18 @@
 
 
 NSMutableArray *_monsters;
-int _monstersDestroyed = 0;
+NSMutableArray *_asteroids;
+
 
 -(id) init {
     if(self = [super init]) {
         _monsters = [[NSMutableArray alloc] init];
+        _asteroids = [[NSMutableArray alloc] init];
         [self setIsTouchEnabled:YES];
-        [self schedule:@selector(gameLogic:) interval:1.0];
+        [self schedule:@selector(addMonster) interval:1.0];
+        int asteroidInterval = (arc4random() % 10) + 1.0;
+        [self schedule:@selector(addAsteroid) interval:asteroidInterval];
+        _monstersDestroyed = 0;
     }
     
     return self;
@@ -29,9 +34,8 @@ int _monstersDestroyed = 0;
 
 
 -(void) addMonster {
-//    Monster *monster = [Monster spriteWithFile:@"enemyShip.png"];
     Monster *monster = nil;
-    if(arc4random() % 2 ==0) {
+    if(arc4random() % 2 == 0) {
         monster = [[[FastMonster alloc] init] autorelease];
     } else {
         monster = [[[SlowMonster alloc] init] autorelease];
@@ -76,16 +80,66 @@ int _monstersDestroyed = 0;
     CCCallBlockN *actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
         [node removeFromParentAndCleanup:YES];
         [_monsters removeObject:node];
-        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
-        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+        
+        // losing
+//        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
+//        [[CCDirector sharedDirector] replaceScene:gameOverScene];
     }];
     [monster runAction:[CCSequence actions: actionMove, actionMoveDone, nil]];
     
     [_monsters addObject:monster];
 }
 
--(void) gameLogic:(ccTime) dt {
-    [self addMonster];
+-(void) addAsteroid {
+    Asteroid *asteroid = [[[Asteroid alloc] init] autorelease];
+    
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    
+    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        // scale down on phones
+        [asteroid setScaleX:winSize.width / 1024.0f];
+        [asteroid setScaleY:winSize.height / 768.0f];
+    }
+    
+    int minY = asteroid.contentSize.height / 2;
+    int maxY = winSize.height - asteroid.contentSize.height / 2;
+    int rangeY = maxY - minY;
+    int actualY = (arc4random() % rangeY) + minY;
+    
+    int startX = 0;
+    int endX = 0;
+    if(arc4random() % 2 != 1) {
+        startX = winSize.width + asteroid.contentSize.width / 2;
+        endX = -asteroid.contentSize.width / 2;
+        
+    } else {
+        startX = -asteroid.contentSize.width / 2;
+        endX = winSize.width + asteroid.contentSize.width / 2;
+    }
+    asteroid.position = ccp(startX, actualY);
+    
+    [self addChild:asteroid];
+    
+    // speed
+    int minDuration = asteroid.minMoveDuration; //8.0;
+    int maxDuration = asteroid.maxMoveDuration; //10.0;
+    int rangeDuration = maxDuration - minDuration;
+    int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    
+    // actions!
+    CCMoveTo *actionMove = [CCMoveTo actionWithDuration:actualDuration
+                                               position:ccp(endX, actualY)];
+    CCCallBlockN *actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+        [node removeFromParentAndCleanup:YES];
+        [_asteroids removeObject:node];
+        
+        // losing
+        //        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
+        //        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+    }];
+    [asteroid runAction:[CCSequence actions: actionMove, actionMoveDone, nil]];
+    
+    [_asteroids addObject:asteroid];
 }
 
 -(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -93,23 +147,34 @@ int _monstersDestroyed = 0;
     CGPoint location = [touch locationInView:[touch view]];
     location = [[CCDirector sharedDirector] convertToGL:location];
     
+    BOOL monsterHit = FALSE;
     NSMutableArray *monstersToDelete = [[NSMutableArray alloc] init];
+    NSMutableArray *asteroidsToDelete = [[NSMutableArray alloc] init];
     
-    for(CCSprite *monster in _monsters) {
+    for(Monster *monster in _monsters) {
         if(CGRectContainsPoint(monster.boundingBox, location)) {
-            [monstersToDelete addObject:monster];
+            monsterHit = TRUE;
+            monster.hp--;
+            if(monster.hp <= 0) {
+                [monstersToDelete addObject:monster];
+            } else {
+                monster.color = ccc3(255, 120, 100);
+                [self.emitter = [CCParticleFire alloc] init];
+                [self.emitter resetSystem];
+                self.emitter.position = ccp(monster.boundingBox.size.width * 0.5,
+                                            monster.boundingBox.size.height * 0.5);
+                self.emitter.positionType = kCCPositionTypeRelative;
+                self.emitter.life = 1;
+                [monster addChild: self.emitter z:-1];
+                self.emitter.autoRemoveOnFinish = YES;
+            }
+            break;
         }
     }
     
-    for(CCSprite *monster in monstersToDelete) {
+    for(Monster *monster in monstersToDelete) {
         [_monsters removeObject:monster];
-        
-        // shake
 
-        
-//        id particleSystem = [[CCParticleSystemQuad alloc] initWithTotalParticles:30];
-//        [particleSystem setEmitterMode: kCCParticleModeGravity];
-        
         [self showParticles:location.x y:location.y];
         [self removeChild:monster cleanup:YES];
         _monstersDestroyed++;
@@ -119,6 +184,26 @@ int _monstersDestroyed = 0;
         }
     }
     [monstersToDelete release];
+    
+    for(Asteroid *asteroid in _asteroids) {
+        CGRect asteroidBounds = CGRectMake(
+                                asteroid.boundingBox.origin.x - (asteroid.boundingBox.size.width * 0.25),
+                                asteroid.boundingBox.origin.y - (asteroid.boundingBox.size.height * 0.25),
+                                asteroid.boundingBox.size.width * 2,
+                                asteroid.boundingBox.size.height * 2);
+        if(CGRectContainsPoint(asteroidBounds, location)) {
+            [asteroidsToDelete addObject:asteroid];
+        }
+        break;
+    }
+    
+    for(Asteroid *asteroid in asteroidsToDelete) {
+        CCLOG(@"deleting asteroid");
+        [_asteroids removeObject:asteroid];
+        [self removeChild:asteroid cleanup:YES];
+        [self shakeScreen];
+    }
+    [asteroidsToDelete release];
 }
 
 -(void) update: (ccTime) dt {
@@ -131,7 +216,7 @@ int _monstersDestroyed = 0;
     [self.emitter setScaleY:0.5];
     
     [self.emitter resetSystem];
-    self.emitter.texture = [[CCTextureCache sharedTextureCache] addImage:@"confetti.png"];
+    self.emitter.texture = [[CCTextureCache sharedTextureCache] addImage:@"starBig.png"];
     self.emitter.duration = 0.5;
     //gravity: how fast the particles fall
 //    self.emitter.gravity = ccp(x, y);
@@ -142,19 +227,19 @@ int _monstersDestroyed = 0;
     self.emitter.speed = 160;
     self.emitter.speedVar = 20;
     
-//    self.emitter.radialAccel = -120;
-//    self.emitter.radialAccelVar = 120;
+    self.emitter.radialAccel = -120;
+    self.emitter.radialAccelVar = 120;
     
-//    self.emitter.tangentialAccel = 30;
-//    self.emitter.tangentialAccelVar = 60;
+    self.emitter.tangentialAccel = 30;
+    self.emitter.tangentialAccelVar = 60;
     
     self.emitter.life = 1;
     self.emitter.lifeVar = 3;
     
-//    self.emitter.startSpin = 15;
-//    self.emitter.startSpinVar = 5;
-//    self.emitter.endSpin = 360;
-//    self.emitter.endSpinVar = 180;
+    self.emitter.startSpin = 15;
+    self.emitter.startSpinVar = 5;
+    self.emitter.endSpin = 360;
+    self.emitter.endSpinVar = 180;
     
     // colours
     ccColor4F startColour = { 171.0f, 26.0f, 37.0f, 1.0f };
@@ -176,8 +261,8 @@ int _monstersDestroyed = 0;
     self.emitter.emissionRate = self.emitter.totalParticles / self.emitter.life;
     
     // startPos
-    self.emitter.position = ccp(x,y);
-    self.emitter.posVar = ccp(3, 3);
+    self.emitter.position = ccp(x + 2, y + 2);
+//    self.emitter.posVar = ccp(10, 10);
     
     // blend the background
     self.emitter.blendAdditive = YES;

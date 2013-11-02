@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 
 @interface GameplayLayer : CCLayer {
+    int _monstersDestroyed;
 
 }
 
