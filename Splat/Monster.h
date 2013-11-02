@@ -8,10 +8,20 @@
 
 #import "cocos2d.h"
 
-@interface Monster : CCSprite  {
+@interface Monster : CCSprite  
 
-}
+@property (nonatomic, assign) int hp;
+@property (nonatomic, assign) int minMoveDuration;
+@property (nonatomic, assign) int maxMoveDuration;
 
-@property (nonatomic, readonly) CGRect rect;
+-(id) initWithFile:(NSString *)filename hp:(int)hp minMoveDuration:(int)minMoveDuration maxMoveDuration:(int)maxMoveDuration;
+
+@end
+
+@interface FastMonster : Monster
+
+@end
+
+@interface SlowMonster : Monster
 
 @end

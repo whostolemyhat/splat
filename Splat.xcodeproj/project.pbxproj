@@ -131,8 +131,6 @@
 		1A6BA9B41813E0CE00B5EC29 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9B31813E0CE00B5EC29 /* vec4.c */; };
 		1A6BA9B91813E0CE00B5EC29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9B81813E0CE00B5EC29 /* main.m */; };
 		1A6BA9BC1813E0CF00B5EC29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9BB1813E0CF00B5EC29 /* AppDelegate.m */; };
-		1A6BA9BF1813E0CF00B5EC29 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9BE1813E0CF00B5EC29 /* HelloWorldLayer.m */; };
-		1A6BA9C21813E0CF00B5EC29 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9C11813E0CF00B5EC29 /* IntroLayer.m */; };
 		1A6BA9CA1813E12C00B5EC29 /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9C91813E12C00B5EC29 /* BackgroundLayer.m */; };
 		1A6BA9CC1813E35400B5EC29 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BA9CB1813E35400B5EC29 /* background.png */; };
 		1A6BA9D1181709CC00B5EC29 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA9D0181709CC00B5EC29 /* GameScene.m */; };
@@ -141,6 +139,11 @@
 		1A6BA9D8181C76ED00B5EC29 /* enemyShip.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BA9D7181C76ED00B5EC29 /* enemyShip.png */; };
 		1A6F72E3181D409400D2B40D /* Monster.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F72E2181D409400D2B40D /* Monster.m */; };
 		1A6F72E6181F18BF00D2B40D /* CCShake.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F72E5181F18BE00D2B40D /* CCShake.m */; };
+		1A6F72E8182501C800D2B40D /* confetti.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F72E7182501C800D2B40D /* confetti.png */; };
+		1A6F72EA18250BA900D2B40D /* meteorSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F72E918250BA900D2B40D /* meteorSmall.png */; };
+		1A6F72ED1825545500D2B40D /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F72EC1825545500D2B40D /* GameOverLayer.m */; };
+		1A6F72EF1825612900D2B40D /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F72EE1825612900D2B40D /* fire.png */; };
+		1A6F72F118256B9600D2B40D /* enemyUFO.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F72F018256B9600D2B40D /* enemyUFO.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -402,10 +405,6 @@
 		1A6BA9B81813E0CE00B5EC29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1A6BA9BA1813E0CE00B5EC29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A6BA9BB1813E0CF00B5EC29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1A6BA9BD1813E0CF00B5EC29 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		1A6BA9BE1813E0CF00B5EC29 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
-		1A6BA9C01813E0CF00B5EC29 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
-		1A6BA9C11813E0CF00B5EC29 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		1A6BA9C81813E12C00B5EC29 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		1A6BA9C91813E12C00B5EC29 /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 		1A6BA9CB1813E35400B5EC29 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -417,8 +416,14 @@
 		1A6BA9D7181C76ED00B5EC29 /* enemyShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip.png; sourceTree = "<group>"; };
 		1A6F72E1181D409400D2B40D /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
 		1A6F72E2181D409400D2B40D /* Monster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monster.m; sourceTree = "<group>"; };
-		1A6F72E4181F18BE00D2B40D /* CCShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCShake.h; sourceTree = "<group>"; };
-		1A6F72E5181F18BE00D2B40D /* CCShake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCShake.m; sourceTree = "<group>"; };
+		1A6F72E4181F18BE00D2B40D /* CCShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCShake.h; path = ../CCShake.h; sourceTree = "<group>"; };
+		1A6F72E5181F18BE00D2B40D /* CCShake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCShake.m; path = ../CCShake.m; sourceTree = "<group>"; };
+		1A6F72E7182501C800D2B40D /* confetti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confetti.png; sourceTree = "<group>"; };
+		1A6F72E918250BA900D2B40D /* meteorSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteorSmall.png; sourceTree = "<group>"; };
+		1A6F72EB1825545500D2B40D /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		1A6F72EC1825545500D2B40D /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
+		1A6F72EE1825612900D2B40D /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
+		1A6F72F018256B9600D2B40D /* enemyUFO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyUFO.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -444,8 +449,6 @@
 		1A6BA8241813E0CC00B5EC29 = {
 			isa = PBXGroup;
 			children = (
-				1A6F72E4181F18BE00D2B40D /* CCShake.h */,
-				1A6F72E5181F18BE00D2B40D /* CCShake.m */,
 				1A6BA8421813E0CC00B5EC29 /* Splat */,
 				1A6BA82F1813E0CC00B5EC29 /* Frameworks */,
 				1A6BA82E1813E0CC00B5EC29 /* Products */,
@@ -479,6 +482,8 @@
 		1A6BA8421813E0CC00B5EC29 /* Splat */ = {
 			isa = PBXGroup;
 			children = (
+				1A6F72E4181F18BE00D2B40D /* CCShake.h */,
+				1A6F72E5181F18BE00D2B40D /* CCShake.m */,
 				1A6BA9BA1813E0CE00B5EC29 /* AppDelegate.h */,
 				1A6BA9BB1813E0CF00B5EC29 /* AppDelegate.m */,
 				1A6BA9C81813E12C00B5EC29 /* BackgroundLayer.h */,
@@ -487,12 +492,10 @@
 				1A6BA9D0181709CC00B5EC29 /* GameScene.m */,
 				1A6BA9D4181C712800B5EC29 /* GameplayLayer.h */,
 				1A6BA9D5181C712900B5EC29 /* GameplayLayer.m */,
-				1A6BA9BD1813E0CF00B5EC29 /* HelloWorldLayer.h */,
-				1A6BA9BE1813E0CF00B5EC29 /* HelloWorldLayer.m */,
+				1A6F72EB1825545500D2B40D /* GameOverLayer.h */,
+				1A6F72EC1825545500D2B40D /* GameOverLayer.m */,
 				1A6F72E1181D409400D2B40D /* Monster.h */,
 				1A6F72E2181D409400D2B40D /* Monster.m */,
-				1A6BA9C01813E0CF00B5EC29 /* IntroLayer.h */,
-				1A6BA9C11813E0CF00B5EC29 /* IntroLayer.m */,
 				1A6BA8431813E0CC00B5EC29 /* Resources */,
 				1A6BA85D1813E0CC00B5EC29 /* libs */,
 				1A6BA9B61813E0CE00B5EC29 /* Supporting Files */,
@@ -503,6 +506,10 @@
 		1A6BA8431813E0CC00B5EC29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1A6F72F018256B9600D2B40D /* enemyUFO.png */,
+				1A6F72EE1825612900D2B40D /* fire.png */,
+				1A6F72E918250BA900D2B40D /* meteorSmall.png */,
+				1A6F72E7182501C800D2B40D /* confetti.png */,
 				1A6BA9D7181C76ED00B5EC29 /* enemyShip.png */,
 				1A6BA9D218170B7F00B5EC29 /* backgroundPhone.png */,
 				1A6BA9CB1813E35400B5EC29 /* background.png */,
@@ -932,6 +939,10 @@
 				1A6BA9CC1813E35400B5EC29 /* background.png in Resources */,
 				1A6BA9D318170B7F00B5EC29 /* backgroundPhone.png in Resources */,
 				1A6BA9D8181C76ED00B5EC29 /* enemyShip.png in Resources */,
+				1A6F72E8182501C800D2B40D /* confetti.png in Resources */,
+				1A6F72EA18250BA900D2B40D /* meteorSmall.png in Resources */,
+				1A6F72EF1825612900D2B40D /* fire.png in Resources */,
+				1A6F72F118256B9600D2B40D /* enemyUFO.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,13 +1055,12 @@
 				1A6BA9B41813E0CE00B5EC29 /* vec4.c in Sources */,
 				1A6BA9B91813E0CE00B5EC29 /* main.m in Sources */,
 				1A6BA9BC1813E0CF00B5EC29 /* AppDelegate.m in Sources */,
-				1A6BA9BF1813E0CF00B5EC29 /* HelloWorldLayer.m in Sources */,
-				1A6BA9C21813E0CF00B5EC29 /* IntroLayer.m in Sources */,
 				1A6BA9CA1813E12C00B5EC29 /* BackgroundLayer.m in Sources */,
 				1A6BA9D1181709CC00B5EC29 /* GameScene.m in Sources */,
 				1A6BA9D6181C712900B5EC29 /* GameplayLayer.m in Sources */,
 				1A6F72E3181D409400D2B40D /* Monster.m in Sources */,
 				1A6F72E6181F18BF00D2B40D /* CCShake.m in Sources */,
+				1A6F72ED1825545500D2B40D /* GameOverLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

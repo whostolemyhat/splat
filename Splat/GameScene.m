@@ -24,5 +24,11 @@
     return self;
 }
 
++(id) scene {
+    CCScene *scene = [CCScene node];
+    GameScene *layer = [GameScene node];
+    [scene addChild:layer];
+    return scene;
+}
 
 @end

@@ -10,41 +10,33 @@
 
 @implementation Monster
 
--(CGRect) rect {
-    CGSize size = [self.texture contentSize];
-    return CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
+-(id) initWithFile:(NSString *)filename hp:(int)hp minMoveDuration:(int)minMoveDuration maxMoveDuration:(int)maxMoveDuration {
+    if(self = [super initWithFile:filename]) {
+        self.hp = hp;
+        self.minMoveDuration = minMoveDuration;
+        self.maxMoveDuration = maxMoveDuration;
+    }
+    
+    return self;
 }
 
--(BOOL) containsTouchLocation:(UITouch *)touch {
-    return CGRectContainsPoint(self.rect, [self convertTouchToNodeSpaceAR:touch]);
+@end
+
+
+@implementation SlowMonster
+
+-(id) init {
+    self = [super initWithFile:@"enemyShip.png" hp:2 minMoveDuration:7 maxMoveDuration:12];
+    return self;
 }
 
-//-(void) onEnter {
-//    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self
-//                                                     priority:0 swallowsTouches:YES];
-//    [super onEnter];
-//}
-//
-//-(void) onExit {
-//    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
-//    [super onExit];
-//}
-//
-//-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-//    if(![self containsTouchLocation:touch]) {
-//        return NO;
-//    }
-//    CCLOG(@"Touched!");
-//    // somme sort of explosion
-//    return YES;
-//}
-//
-//-(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
-//    CCLOG(@"Touch moved");
-//}
-//
-//-(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-//    CCLOG(@"Touch end");
-//}
+@end
+
+@implementation FastMonster
+
+-(id) init {
+    self = [super initWithFile:@"enemyUFO" hp:1 minMoveDuration:3 maxMoveDuration:5];
+    return self;
+}
 
 @end

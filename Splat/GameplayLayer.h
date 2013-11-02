@@ -6,10 +6,12 @@
 //
 //
 
-#import "CCLayer.h"
+#import "cocos2d.h"
 
 @interface GameplayLayer : CCLayer {
 
 }
+
+@property (nonatomic, retain) CCParticleSystem *emitter;
 
 @end
