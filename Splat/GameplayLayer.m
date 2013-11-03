@@ -216,7 +216,7 @@ NSMutableArray *_asteroids;
     [self.emitter setScaleY:0.5];
     
     [self.emitter resetSystem];
-    self.emitter.texture = [[CCTextureCache sharedTextureCache] addImage:@"starBig.png"];
+    self.emitter.texture = [[CCTextureCache sharedTextureCache] addImage:@"confetti.png"];
     self.emitter.duration = 0.5;
     //gravity: how fast the particles fall
 //    self.emitter.gravity = ccp(x, y);
