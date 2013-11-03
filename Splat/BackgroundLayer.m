@@ -21,7 +21,7 @@
         ccTexParams params = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
         [backgroundImage.texture setTexParameters:&params];
         backgroundImage.position = ccp(screenSize.width / 2, screenSize.height / 2);
-        
+
         [self addChild:backgroundImage z:0 tag:0];
     }
     

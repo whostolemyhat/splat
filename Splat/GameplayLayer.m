@@ -137,7 +137,12 @@ NSMutableArray *_asteroids;
         //        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
         //        [[CCDirector sharedDirector] replaceScene:gameOverScene];
     }];
+    
+    // spin asteroid
+    // TODO: random spin/duration
+    CCAction *spin = [CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:5.0 angle:360]];
     [asteroid runAction:[CCSequence actions: actionMove, actionMoveDone, nil]];
+    [asteroid runAction: spin];
     
     [_asteroids addObject:asteroid];
 }
@@ -157,6 +162,7 @@ NSMutableArray *_asteroids;
             monster.hp--;
             if(monster.hp <= 0) {
                 [monstersToDelete addObject:monster];
+
             } else {
                 monster.color = ccc3(255, 120, 100);
                 [self.emitter = [CCParticleFire alloc] init];
@@ -176,7 +182,17 @@ NSMutableArray *_asteroids;
         [_monsters removeObject:monster];
 
         [self showParticles:location.x y:location.y];
-        [self removeChild:monster cleanup:YES];
+        CCCallBlockN *actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+            [node removeFromParentAndCleanup:YES];
+            
+            [_monsters removeObject:node];
+        }];
+        // TODO: random spin angle
+        [monster runAction:[CCRotateBy actionWithDuration:0.3 angle:180]];
+        [monster runAction:[CCSequence actions:
+                            [CCScaleTo actionWithDuration:0.2 scale:0],
+                            actionMoveDone, nil]];
+//        [self removeChild:monster cleanup:YES];
         _monstersDestroyed++;
         if(_monstersDestroyed > 30) {
             CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
