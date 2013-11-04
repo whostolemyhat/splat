@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A15685C18268DAC00E91F36 /* spaceCylinder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A15685B18268DAC00E91F36 /* spaceCylinder.jpg */; };
+		1A15685F1826D18600E91F36 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A15685E1826D18600E91F36 /* Level.m */; };
+		1A1568621826DE5D00E91F36 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1568611826DE5D00E91F36 /* LevelManager.m */; };
 		1A6BA8311813E0CC00B5EC29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6BA8301813E0CC00B5EC29 /* QuartzCore.framework */; };
 		1A6BA8331813E0CC00B5EC29 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6BA8321813E0CC00B5EC29 /* OpenGLES.framework */; };
 		1A6BA8351813E0CC00B5EC29 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6BA8341813E0CC00B5EC29 /* OpenAL.framework */; };
@@ -151,6 +153,10 @@
 
 /* Begin PBXFileReference section */
 		1A15685B18268DAC00E91F36 /* spaceCylinder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spaceCylinder.jpg; sourceTree = "<group>"; };
+		1A15685D1826D18500E91F36 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		1A15685E1826D18600E91F36 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		1A1568601826DE5D00E91F36 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelManager.h; path = ../LevelManager.h; sourceTree = "<group>"; };
+		1A1568611826DE5D00E91F36 /* LevelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelManager.m; path = ../LevelManager.m; sourceTree = "<group>"; };
 		1A6BA82D1813E0CC00B5EC29 /* Splat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6BA8301813E0CC00B5EC29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1A6BA8321813E0CC00B5EC29 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -502,6 +508,10 @@
 				1A6F72EC1825545500D2B40D /* GameOverLayer.m */,
 				1A6F72E1181D409400D2B40D /* Monster.h */,
 				1A6F72E2181D409400D2B40D /* Monster.m */,
+				1A15685D1826D18500E91F36 /* Level.h */,
+				1A15685E1826D18600E91F36 /* Level.m */,
+				1A1568601826DE5D00E91F36 /* LevelManager.h */,
+				1A1568611826DE5D00E91F36 /* LevelManager.m */,
 				1A6BA8431813E0CC00B5EC29 /* Resources */,
 				1A6BA85D1813E0CC00B5EC29 /* libs */,
 				1A6BA9B61813E0CE00B5EC29 /* Supporting Files */,
@@ -1073,6 +1083,8 @@
 				1A6F72E3181D409400D2B40D /* Monster.m in Sources */,
 				1A6F72E6181F18BF00D2B40D /* CCShake.m in Sources */,
 				1A6F72ED1825545500D2B40D /* GameOverLayer.m in Sources */,
+				1A15685F1826D18600E91F36 /* Level.m in Sources */,
+				1A1568621826DE5D00E91F36 /* LevelManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "GameOverLayer.h"
 #import "GameScene.h"
+#import "LevelManager.h"
 
 @implementation GameOverLayer
 
@@ -19,17 +20,26 @@
 }
 
 -(id) initWithWon:(BOOL)won {
-    if(self == [super initWithColor:ccc4(255, 255, 255, 255)]) {
+    if(self == [super init]) {
         NSString *message;
         if(won) {
-            message = @"You win";
+            [[LevelManager sharedInstance] nextLevel];
+            Level *curLevel = [[LevelManager sharedInstance] curLevel];
+            if(curLevel) {
+                message = [NSString stringWithFormat:@"Get ready for level %d", curLevel.levelNum];
+            } else {
+                message = @"You win";
+                [[LevelManager sharedInstance] reset];
+            }
+            
         } else {
             message = @"You lose";
+            [[LevelManager sharedInstance] reset];
         }
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         CCLabelTTF *label = [CCLabelTTF labelWithString:message fontName:@"Arial" fontSize:32];
-        label.color = ccc3(0,0,0);
+        label.color = ccc3(255,255,255);
         label.position = ccp(winSize.width / 2, winSize.height / 2);
         [self addChild:label];
         

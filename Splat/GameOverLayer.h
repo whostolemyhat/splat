@@ -8,7 +8,7 @@
 
 #import "cocos2d.h"
 
-@interface GameOverLayer : CCLayerColor
+@interface GameOverLayer : CCLayer
 
 +(CCScene *) sceneWithWon:(BOOL)won;
 -(id) initWithWon:(BOOL)won;
