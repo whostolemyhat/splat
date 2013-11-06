@@ -10,6 +10,7 @@
 #import "Monster.h"
 #import "CCShake.h"
 #import "GameOverLayer.h"
+#import "LevelManager.h"
 
 @implementation GameplayLayer
 
@@ -23,7 +24,7 @@ NSMutableArray *_asteroids;
         _monsters = [[NSMutableArray alloc] init];
         _asteroids = [[NSMutableArray alloc] init];
         [self setIsTouchEnabled:YES];
-        [self schedule:@selector(addMonster) interval:1.0];
+        [self schedule:@selector(addMonster) interval:[LevelManager sharedInstance].curLevel.secsPerSpawn];
         int asteroidInterval = (arc4random() % 10) + 1.0;
         [self schedule:@selector(addAsteroid) interval:asteroidInterval];
         _monstersDestroyed = 0;
