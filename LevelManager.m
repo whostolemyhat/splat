@@ -24,8 +24,12 @@
 -(id) init {
     if(self = [super init]) {
         _curLevelIdx = 0;
-        Level *level1 = [[[Level alloc] initWithLevelNum:1 secsPerSpawn:2 backgroundColour:ccc4(255, 255, 255, 255)] autorelease];
-        Level *level2 = [[[Level alloc] initWithLevelNum:2 secsPerSpawn:1 backgroundColour:ccc4(100, 150, 20, 255)] autorelease];
+        Level *level1 = [[[Level alloc] initWithLevelNum:1 secsPerSpawn:2
+                                        backgroundColour:ccc4(255, 255, 255, 255)
+                                               nextLevel:10] autorelease];
+        Level *level2 = [[[Level alloc] initWithLevelNum:2 secsPerSpawn:1
+                                        backgroundColour:ccc4(100, 150, 20, 255)
+                                        nextLevel:30] autorelease];
         _levels = [@[level1, level2] retain];
     }
     

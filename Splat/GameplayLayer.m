@@ -195,7 +195,7 @@ NSMutableArray *_asteroids;
                             actionMoveDone, nil]];
 //        [self removeChild:monster cleanup:YES];
         _monstersDestroyed++;
-        if(_monstersDestroyed > 30) {
+        if(_monstersDestroyed > [LevelManager sharedInstance].curLevel.nextLevel) {
             CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
