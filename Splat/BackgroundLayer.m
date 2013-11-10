@@ -7,6 +7,7 @@
 //
 
 #import "BackgroundLayer.h"
+#import "LevelManager.h"
 
 @implementation BackgroundLayer
 
@@ -21,6 +22,8 @@
         ccTexParams params = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
         [backgroundImage.texture setTexParameters:&params];
         backgroundImage.position = ccp(screenSize.width / 2, screenSize.height / 2);
+        
+        backgroundImage.color = [LevelManager sharedInstance].curLevel.backgroundColour;
 
         [self addChild:backgroundImage z:0 tag:0];
     }

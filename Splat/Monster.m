@@ -26,26 +26,36 @@
 @implementation SlowMonster
 
 -(id) init {
-    self = [super initWithFile:@"enemyShip.png" hp:2 minMoveDuration:5 maxMoveDuration:10];
+    self = [super initWithFile:@"enemyShip.png" hp:2 minMoveDuration:3 maxMoveDuration:7];
+    self.type = @"SlowMonster";
     return self;
 }
-
 @end
+
 
 @implementation FastMonster
 
 -(id) init {
-    self = [super initWithFile:@"enemyUFO.png" hp:1 minMoveDuration:3 maxMoveDuration:5];
+    self = [super initWithFile:@"enemyUFO.png" hp:1 minMoveDuration:2 maxMoveDuration:3];
+    self.type = @"FastMonster";
     return self;
 }
-
 @end
+
 
 @implementation Asteroid
 
 -(id) init {
-    self = [super initWithFile:@"meteorSmall.png" hp:1 minMoveDuration:5 maxMoveDuration:8];
+    self = [super initWithFile:@"meteorSmall.png" hp:1 minMoveDuration:2 maxMoveDuration:8];
     return self;
 }
+@end
 
+
+@implementation LargeAsteroid
+
+-(id) init {
+    self = [super initWithFile:@"meteorBig.png" hp:1 minMoveDuration:4 maxMoveDuration: 8];
+    return self;
+}
 @end

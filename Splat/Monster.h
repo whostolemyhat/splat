@@ -13,6 +13,7 @@
 @property (nonatomic, assign) int hp;
 @property (nonatomic, assign) int minMoveDuration;
 @property (nonatomic, assign) int maxMoveDuration;
+@property (nonatomic, assign) NSString *type;
 
 -(id) initWithFile:(NSString *)filename hp:(int)hp minMoveDuration:(int)minMoveDuration maxMoveDuration:(int)maxMoveDuration;
 
@@ -27,5 +28,9 @@
 @end
 
 @interface Asteroid : Monster
+
+@end
+
+@interface LargeAsteroid : Monster
 
 @end

@@ -24,11 +24,11 @@
 -(id) init {
     if(self = [super init]) {
         _curLevelIdx = 0;
-        Level *level1 = [[[Level alloc] initWithLevelNum:1 secsPerSpawn:2
-                                        backgroundColour:ccc4(255, 255, 255, 255)
+        Level *level1 = [[[Level alloc] initWithLevelNum:1 secsPerSpawn:2 asteroidSpawn:2
+                                        backgroundColour:ccc3(255, 255, 255)
                                                nextLevel:10] autorelease];
-        Level *level2 = [[[Level alloc] initWithLevelNum:2 secsPerSpawn:1
-                                        backgroundColour:ccc4(100, 150, 20, 255)
+        Level *level2 = [[[Level alloc] initWithLevelNum:2 secsPerSpawn:1 asteroidSpawn: 4
+                                        backgroundColour:[self randomColour]
                                         nextLevel:30] autorelease];
         _levels = [@[level1, level2] retain];
     }
@@ -55,6 +55,15 @@
     [_levels release];
     _levels = nil;
     [super dealloc];
+}
+
+-(ccColor3B) randomColour {
+    int red = arc4random() % 256;
+    int green = arc4random() % 256;
+    int blue = arc4random() % 256;
+    
+    ccColor3B randomColour = ccc3(red, green, blue);
+    return randomColour;
 }
 
 @end

@@ -17,15 +17,17 @@
 
 NSMutableArray *_monsters;
 NSMutableArray *_asteroids;
+NSMutableArray *_smallAsteroids;
 
 
 -(id) init {
     if(self = [super init]) {
         _monsters = [[NSMutableArray alloc] init];
         _asteroids = [[NSMutableArray alloc] init];
+        _smallAsteroids = [[NSMutableArray alloc] init];
         [self setIsTouchEnabled:YES];
         [self schedule:@selector(addMonster) interval:[LevelManager sharedInstance].curLevel.secsPerSpawn];
-        int asteroidInterval = (arc4random() % 10) + 1.0;
+        int asteroidInterval = (arc4random() % 10) + [LevelManager sharedInstance].curLevel.asteroidSpawn;
         [self schedule:@selector(addAsteroid) interval:asteroidInterval];
         _monstersDestroyed = 0;
     }
@@ -92,7 +94,7 @@ NSMutableArray *_asteroids;
 }
 
 -(void) addAsteroid {
-    Asteroid *asteroid = [[[Asteroid alloc] init] autorelease];
+    LargeAsteroid *asteroid = [[[LargeAsteroid alloc] init] autorelease];
     
     CGSize winSize = [CCDirector sharedDirector].winSize;
     
@@ -140,12 +142,63 @@ NSMutableArray *_asteroids;
     }];
     
     // spin asteroid
-    // TODO: random spin/duration
-    CCAction *spin = [CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:5.0 angle:360]];
+    int randomSpin = arc4random() % 6;
+    CCAction *spin = [CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:randomSpin angle:360]];
     [asteroid runAction:[CCSequence actions: actionMove, actionMoveDone, nil]];
     [asteroid runAction: spin];
     
     [_asteroids addObject:asteroid];
+}
+
+-(void) addAsteroidsAtLocation:(CGPoint)location number:(int)amount {
+    for(int i = 0; i < amount; i++) {
+        Asteroid *asteroid = [[[Asteroid alloc] init] autorelease];
+        
+        CGSize winSize = [CCDirector sharedDirector].winSize;
+        if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+            // scale down on phones
+            [asteroid setScaleX:winSize.width / 1024.0f];
+            [asteroid setScaleY:winSize.height / 768.0f];
+        }
+        
+        int minY = asteroid.contentSize.height / 2;
+        int maxY = winSize.height - asteroid.contentSize.height / 2;
+        int rangeY = maxY - minY;
+        int endX = 0;
+        int endY = (arc4random() % rangeY) + minY;
+        
+        if(arc4random() % 2 != 1) {
+            endX = -asteroid.contentSize.width / 2;
+        } else {
+            endX = winSize.width + asteroid.contentSize.width / 2;
+        }
+        
+        asteroid.position = ccp(location.x, location.y);
+        
+        // speed
+        int minDuration = asteroid.minMoveDuration; //8.0;
+        int maxDuration = asteroid.maxMoveDuration; //10.0;
+        int rangeDuration = maxDuration - minDuration;
+        int actualDuration = (arc4random() % rangeDuration) + minDuration;
+        // actions!
+        CCMoveTo *actionMove = [CCMoveTo actionWithDuration:actualDuration
+                                                   position:ccp(endX, endY)];
+        CCCallBlockN *actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+            [node removeFromParentAndCleanup:YES];
+            [_smallAsteroids removeObject:node];
+        }];
+        
+        // spin asteroid
+        int randomSpin = arc4random() % 6;
+        CCAction *spin = [CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:randomSpin angle:360]];
+        [asteroid runAction:[CCSequence actions: actionMove, actionMoveDone, nil]];
+        [asteroid runAction: spin];
+        
+        
+        [_smallAsteroids addObject:asteroid];
+
+        [self addChild:asteroid z:3];
+    }
 }
 
 -(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -202,29 +255,38 @@ NSMutableArray *_asteroids;
     }
     [monstersToDelete release];
     
-    for(Asteroid *asteroid in _asteroids) {
+    for(LargeAsteroid *asteroid in _asteroids) {
+//        if([asteroid isKindOfClass:[LargeAsteroid class]]) {
+//            LargeAsteroid *largeAsteroid = (LargeAsteroid *) asteroid;
+            if(CGRectContainsPoint(asteroid.boundingBox, location)) {
+                int numberOfAsteroids = (arc4random() % 3) + 1;
+                [self addAsteroidsAtLocation:location number:numberOfAsteroids];
+                [asteroidsToDelete addObject:asteroid];
+            }
+//        }
+
+        break;
+    }
+    
+    for(Asteroid *asteroid in _smallAsteroids) {
         CGRect asteroidBounds = CGRectMake(
-                                asteroid.boundingBox.origin.x - (asteroid.boundingBox.size.width * 0.25),
-                                asteroid.boundingBox.origin.y - (asteroid.boundingBox.size.height * 0.25),
-                                asteroid.boundingBox.size.width * 2,
-                                asteroid.boundingBox.size.height * 2);
+                                    asteroid.boundingBox.origin.x - (asteroid.boundingBox.size.width * 0.25),
+                                    asteroid.boundingBox.origin.y - (asteroid.boundingBox.size.height * 0.25),
+                                    asteroid.boundingBox.size.width * 2,
+                                    asteroid.boundingBox.size.height * 2);
         if(CGRectContainsPoint(asteroidBounds, location)) {
             [asteroidsToDelete addObject:asteroid];
         }
         break;
     }
     
-    for(Asteroid *asteroid in asteroidsToDelete) {
-        CCLOG(@"deleting asteroid");
+    for(Monster *asteroid in asteroidsToDelete) {
         [_asteroids removeObject:asteroid];
+        [_smallAsteroids removeObject:asteroid];
         [self removeChild:asteroid cleanup:YES];
         [self shakeScreen];
     }
     [asteroidsToDelete release];
-}
-
--(void) update: (ccTime) dt {
-    
 }
 
 -(void) showParticles:(float)x y:(float)y {

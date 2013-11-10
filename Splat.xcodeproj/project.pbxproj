@@ -10,6 +10,7 @@
 		1A15685C18268DAC00E91F36 /* spaceCylinder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A15685B18268DAC00E91F36 /* spaceCylinder.jpg */; };
 		1A15685F1826D18600E91F36 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A15685E1826D18600E91F36 /* Level.m */; };
 		1A1568621826DE5D00E91F36 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1568611826DE5D00E91F36 /* LevelManager.m */; };
+		1A156864182D8C5600E91F36 /* meteorBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A156863182D8C5600E91F36 /* meteorBig.png */; };
 		1A6BA8311813E0CC00B5EC29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6BA8301813E0CC00B5EC29 /* QuartzCore.framework */; };
 		1A6BA8331813E0CC00B5EC29 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6BA8321813E0CC00B5EC29 /* OpenGLES.framework */; };
 		1A6BA8351813E0CC00B5EC29 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6BA8341813E0CC00B5EC29 /* OpenAL.framework */; };
@@ -157,6 +158,7 @@
 		1A15685E1826D18600E91F36 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		1A1568601826DE5D00E91F36 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelManager.h; path = ../LevelManager.h; sourceTree = "<group>"; };
 		1A1568611826DE5D00E91F36 /* LevelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelManager.m; path = ../LevelManager.m; sourceTree = "<group>"; };
+		1A156863182D8C5600E91F36 /* meteorBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meteorBig.png; sourceTree = "<group>"; };
 		1A6BA82D1813E0CC00B5EC29 /* Splat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A6BA8301813E0CC00B5EC29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1A6BA8321813E0CC00B5EC29 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -522,6 +524,7 @@
 		1A6BA8431813E0CC00B5EC29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1A156863182D8C5600E91F36 /* meteorBig.png */,
 				1A15685B18268DAC00E91F36 /* spaceCylinder.jpg */,
 				1A6F72F618258F9500D2B40D /* starBackground.png */,
 				1A6F72F218258CBE00D2B40D /* starBig.png */,
@@ -965,6 +968,7 @@
 				1A6F72F318258CBF00D2B40D /* starBig.png in Resources */,
 				1A6F72F718258F9500D2B40D /* starBackground.png in Resources */,
 				1A15685C18268DAC00E91F36 /* spaceCylinder.jpg in Resources */,
+				1A156864182D8C5600E91F36 /* meteorBig.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
