@@ -7,12 +7,16 @@
 //
 
 #import "cocos2d.h"
+#import "HudLayer.h"
 
 @interface GameplayLayer : CCLayer {
     int _monstersDestroyed;
-
+    HudLayer *_hud;
 }
 
 @property (nonatomic, retain) CCParticleSystem *emitter;
+@property (nonatomic, retain) HudLayer *_hud;
+
++(CCScene *) scene;
 
 @end

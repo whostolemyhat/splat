@@ -26,7 +26,7 @@
 @implementation SlowMonster
 
 -(id) init {
-    self = [super initWithFile:@"enemyShip.png" hp:2 minMoveDuration:3 maxMoveDuration:7];
+    self = [super initWithFile:@"enemyShip.png" hp:2 minMoveDuration:3 maxMoveDuration:6];
     self.type = @"SlowMonster";
     return self;
 }

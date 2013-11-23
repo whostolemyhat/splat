@@ -10,7 +10,14 @@
 #import <Foundation/Foundation.h>
 #import "BackgroundLayer.h"
 #import "GameplayLayer.h"
+#import "HudLayer.h"
+
+//HudLayer *_hud;
 
 @interface GameScene : CCScene
 
+//-(id) initWithHud:(HudLayer *)hud;
+
 @end
+
+

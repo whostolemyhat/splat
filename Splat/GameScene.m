@@ -10,25 +10,32 @@
 
 @implementation GameScene
 
--(id) init {
-    self = [super init];
++(id) scene {
+    CCScene *scene = [CCScene node];
+    
+    GameScene *layer = [GameScene node];
+    [scene addChild:layer];
+    
+    return scene;
+}
 
-    if(self != nil) {
+-(id) init {
+
+    if(self = [super init]) {
+//        _hud = hud;
         
         BackgroundLayer *background = [BackgroundLayer node];
         [self addChild:background z: 0];
         GameplayLayer *gameplayLayer = [GameplayLayer node];
-        [self addChild:gameplayLayer z: 1];
+        [self addChild:gameplayLayer z: 2];
+//        HudLayer *hud = [HudLayer node];
+//        [self addChild:hud z: 3];
+
     }
     
     return self;
 }
 
-+(id) scene {
-    CCScene *scene = [CCScene node];
-    GameScene *layer = [GameScene node];
-    [scene addChild:layer];
-    return scene;
-}
+
 
 @end

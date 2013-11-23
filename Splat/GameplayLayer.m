@@ -14,18 +14,35 @@
 
 @implementation GameplayLayer
 
+@synthesize _hud;
 
 NSMutableArray *_monsters;
 NSMutableArray *_asteroids;
 NSMutableArray *_smallAsteroids;
 
++(CCScene *)scene {
+    CCScene *scene = [CCScene node];
+    
+    HudLayer *hud = [HudLayer node];
+    [scene addChild: hud z: 1];
+    
+    GameplayLayer *layer = [GameplayLayer node];
+    [scene addChild:layer];
+    
+    return scene;
+}
 
 -(id) init {
+    CCLOG(@"Here");
     if(self = [super init]) {
+        _hud = [[[HudLayer alloc] init] autorelease];
+        [self addChild:_hud];
+        
         _monsters = [[NSMutableArray alloc] init];
         _asteroids = [[NSMutableArray alloc] init];
         _smallAsteroids = [[NSMutableArray alloc] init];
         [self setIsTouchEnabled:YES];
+
         [self schedule:@selector(addMonster) interval:[LevelManager sharedInstance].curLevel.secsPerSpawn];
         int asteroidInterval = (arc4random() % 10) + [LevelManager sharedInstance].curLevel.asteroidSpawn;
         [self schedule:@selector(addAsteroid) interval:asteroidInterval];
@@ -37,60 +54,66 @@ NSMutableArray *_smallAsteroids;
 
 
 -(void) addMonster {
-    Monster *monster = nil;
-    if(arc4random() % 2 == 0) {
-        monster = [[[FastMonster alloc] init] autorelease];
-    } else {
-        monster = [[[SlowMonster alloc] init] autorelease];
-    }
-    
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-    
-    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        // scale down on phones
-        [monster setScaleX:winSize.width / 1024.0f];
-        [monster setScaleY:winSize.height / 768.0f];
-    }
-    
-    int minY = monster.contentSize.height / 2;
-    int maxY = winSize.height - monster.contentSize.height / 2;
-    int rangeY = maxY - minY;
-    int actualY = (arc4random() % rangeY) + minY;
+    int num = arc4random() % 3;
+    for(int i = 0; i < num; i++) {
+        Monster *monster = nil;
+        if(arc4random() % 2 == 0) {
+            monster = [[[FastMonster alloc] init] autorelease];
+        } else {
+            monster = [[[SlowMonster alloc] init] autorelease];
+        }
         
-    int startX = 0;
-    int endX = 0;
-    if(arc4random() % 2 != 1) {
-        startX = winSize.width + monster.contentSize.width / 2;
-        endX = -monster.contentSize.width / 2;
+        CGSize winSize = [CCDirector sharedDirector].winSize;
         
-    } else {
-        startX = -monster.contentSize.width / 2;
-        endX = winSize.width + monster.contentSize.width / 2;
+        if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+            // scale down on phones
+            [monster setScaleX:winSize.width / 1024.0f];
+            [monster setScaleY:winSize.height / 768.0f];
+        }
+        
+        int minY = monster.contentSize.height / 2;
+        int maxY = winSize.height - monster.contentSize.height / 2;
+        int rangeY = maxY - minY;
+        int actualY = (arc4random() % rangeY) + minY;
+        
+        int startX = 0;
+        int endX = 0;
+        if(arc4random() % 2 != 1) {
+            startX = winSize.width + monster.contentSize.width / 2;
+            endX = -monster.contentSize.width / 2;
+            
+        } else {
+            startX = -monster.contentSize.width / 2;
+            endX = winSize.width + monster.contentSize.width / 2;
+        }
+        monster.position = ccp(startX, actualY);
+        
+        [self addChild:monster z:1];
+        
+        // speed
+        int minDuration = monster.minMoveDuration; //8.0;
+        int maxDuration = monster.maxMoveDuration; //10.0;
+        int rangeDuration = maxDuration - minDuration;
+        int actualDuration = (arc4random() % rangeDuration) + minDuration;
+        
+        // actions!
+        CCMoveTo *actionMove = [CCMoveTo actionWithDuration:actualDuration
+                                                   position:ccp(endX, actualY)];
+        CCCallBlockN *actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+            [node removeFromParentAndCleanup:YES];
+            [_monsters removeObject:node];
+            
+            // losing
+            //        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
+            //        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+            [_hud showRestartMenu:NO withMessage:@"You lose!"];
+            
+        }];
+        [monster runAction:[CCSequence actions: actionMove, actionMoveDone, nil]];
+        
+        [_monsters addObject:monster];
     }
-    monster.position = ccp(startX, actualY);
-    
-    [self addChild:monster];
-    
-    // speed
-    int minDuration = monster.minMoveDuration; //8.0;
-    int maxDuration = monster.maxMoveDuration; //10.0;
-    int rangeDuration = maxDuration - minDuration;
-    int actualDuration = (arc4random() % rangeDuration) + minDuration;
-    
-    // actions!
-    CCMoveTo *actionMove = [CCMoveTo actionWithDuration:actualDuration
-                                               position:ccp(endX, actualY)];
-    CCCallBlockN *actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
-        [node removeFromParentAndCleanup:YES];
-        [_monsters removeObject:node];
-        
-        // losing
-//        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
-//        [[CCDirector sharedDirector] replaceScene:gameOverScene];
-    }];
-    [monster runAction:[CCSequence actions: actionMove, actionMoveDone, nil]];
-    
-    [_monsters addObject:monster];
+
 }
 
 -(void) addAsteroid {
@@ -121,7 +144,7 @@ NSMutableArray *_smallAsteroids;
     }
     asteroid.position = ccp(startX, actualY);
     
-    [self addChild:asteroid];
+    [self addChild:asteroid z:3];
     
     // speed
     int minDuration = asteroid.minMoveDuration; //8.0;
@@ -151,7 +174,7 @@ NSMutableArray *_smallAsteroids;
 }
 
 -(void) addAsteroidsAtLocation:(CGPoint)location number:(int)amount {
-    for(int i = 0; i < amount; i++) {
+    for(int i = 0; i <= amount; i++) {
         Asteroid *asteroid = [[[Asteroid alloc] init] autorelease];
         
         CGSize winSize = [CCDirector sharedDirector].winSize;
@@ -249,8 +272,9 @@ NSMutableArray *_smallAsteroids;
 //        [self removeChild:monster cleanup:YES];
         _monstersDestroyed++;
         if(_monstersDestroyed > [LevelManager sharedInstance].curLevel.nextLevel) {
-            CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
-            [[CCDirector sharedDirector] replaceScene:gameOverScene];
+//            CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
+//            [[CCDirector sharedDirector] replaceScene:gameOverScene];
+
         }
     }
     [monstersToDelete release];
@@ -260,6 +284,7 @@ NSMutableArray *_smallAsteroids;
 //            LargeAsteroid *largeAsteroid = (LargeAsteroid *) asteroid;
             if(CGRectContainsPoint(asteroid.boundingBox, location)) {
                 int numberOfAsteroids = (arc4random() % 3) + 1;
+                CCLOG(@"%d", numberOfAsteroids);
                 [self addAsteroidsAtLocation:location number:numberOfAsteroids];
                 [asteroidsToDelete addObject:asteroid];
             }
